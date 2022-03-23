@@ -1,0 +1,55 @@
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{18FA050F-EDBE-4B72-B378-639E97DB0FE3}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/TransferController.cs">
+    <Files>
+      <File FileName="appsettings.json" Line="15" Column="36" />
+      <File FileName="Properties/launchSettings.json" Line="7" Column="44" />
+      <File FileName="Controllers/TransferController.cs" Line="42" Column="35" />
+      <File FileName="Models/Transfer.cs" Line="13" Column="28" />
+      <File FileName="Controllers/AccountController.cs" Line="207" Column="14" />
+      <File FileName="Controllers/DirectionsController.cs" Line="28" Column="10" />
+      <File FileName="IUserResult.cs" Line="16" Column="44" />
+      <File FileName="Models/User.cs" Line="46" Column="49" />
+      <File FileName="Program.cs" Line="70" Column="1" />
+      <File FileName="Services/Auth/Repositories/UserRepository.cs" Line="64" Column="1" />
+      <File FileName="Services/Auth/AuthOptions.cs" Line="76" Column="1" />
+      <File FileName="Interfaces/ITransferRequest.cs" Line="16" Column="1" />
+      <File FileName="Repositories/TransferRepository.cs" Line="15" Column="41" />
+      <File FileName="Controllers/DepartmentscController.cs" Line="18" Column="31" />
+      <File FileName="Repositories/DepartmentRepository.cs" Line="29" Column="33" />
+      <File FileName="Models/Department.cs" Line="8" Column="9" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Osvip.Api" expanded="True">
+            <Node name="Osvip.Api" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Auth" expanded="True">
+                  <Node name="Repositories" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="Source" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Osvip.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

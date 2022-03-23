@@ -1,0 +1,87 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.16.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
+    <PackageReference Include="IdentityModel" Version="6.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.16.0" />
+    <PackageReference Include="IdentityServer4" Version="4.1.2" />
+    <PackageReference Include="IdentityServer3.Contrib.AccessTokenValidation" Version="4.1.16" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.3" />
+    <PackageReference Include="MimeKit" Version="3.1.1" />
+    <PackageReference Include="MailKit" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.23.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+    <Folder Include="ServerModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Auth\" />
+    <Folder Include="wwwroot\Source\Images\" />
+    <Folder Include="wwwroot\Source\Images\baseImages\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\Source\" />
+    <Folder Include="ServerModels\AdminModels\" />
+    <Folder Include="wwwroot\Source\Images\Departments\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="wwwroot\Source\Images\UsersImages\" />
+    <Folder Include="wwwroot\Source\Documents\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <None Remove="Microsoft.IdentityModel.Tokens" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="IdentityModel" />
+    <None Remove="Microsoft.IdentityModel.JsonWebTokens" />
+    <None Remove="IdentityServer4" />
+    <None Remove="IdentityServer3.Contrib.AccessTokenValidation" />
+    <None Remove="IdentityServer4.AccessTokenValidation" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
+    <None Remove="ServerModels\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Auth\" />
+    <None Remove="MimeKit" />
+    <None Remove="MailKit" />
+    <None Remove="Microsoft.Identity.Web" />
+    <None Remove="Sources\" />
+    <None Remove="Source\Images\" />
+    <None Remove="Source\Images\baseImages\" />
+    <None Remove="ServerModels\AdminModels\" />
+    <None Remove="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\Source\Images\.DS_Store" />
+    <Content Remove="wwwroot\Source\" />
+    <Content Remove="wwwroot\Source\Images\Departments\" />
+    <Content Remove="wwwroot\Source\Images\UsersImages\" />
+    <Content Remove="wwwroot\Source\Documents\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\Source\Images\.DS_Store" />
+  </ItemGroup>
+</Project>

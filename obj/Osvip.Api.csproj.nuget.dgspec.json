@@ -42,27 +42,7 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
-            "IdentityServer3.Contrib.AccessTokenValidation": {
-              "target": "Package",
-              "version": "[4.1.16, )"
-            },
-            "IdentityServer4": {
-              "target": "Package",
-              "version": "[4.1.2, )"
-            },
-            "IdentityServer4.AccessTokenValidation": {
-              "target": "Package",
-              "version": "[3.0.1, )"
-            },
-            "MailKit": {
-              "target": "Package",
-              "version": "[3.1.1, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[6.0.3, )"
-            },
-            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
               "version": "[6.0.3, )"
             },
@@ -70,9 +50,9 @@
               "target": "Package",
               "version": "[6.0.3, )"
             },
-            "Microsoft.AspNetCore.Identity.UI": {
+            "Microsoft.CodeAnalysis.Metrics": {
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[3.3.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -88,21 +68,13 @@
               "target": "Package",
               "version": "[6.0.3, )"
             },
-            "Microsoft.Identity.Web": {
-              "target": "Package",
-              "version": "[1.23.1, )"
-            },
-            "Microsoft.IdentityModel.JsonWebTokens": {
-              "target": "Package",
-              "version": "[6.16.0, )"
-            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[6.16.0, )"
             },
-            "MimeKit": {
+            "NETCore.MailKit": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[2.0.3, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",

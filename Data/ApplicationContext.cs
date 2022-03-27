@@ -17,7 +17,11 @@ namespace Osvip.Api.Data
                 .HasOne(x => x.user)
                 .WithOne(x => x.Token)
                 .HasPrincipalKey<User>(x => x.UserId);
+
+          
+
             modelBuilder.HasDefaultSchema("public");
+
             
         }
         public DbSet<User> Users { get; set; }
@@ -27,5 +31,10 @@ namespace Osvip.Api.Data
         public DbSet<TestResponse> TestResponses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
+        public DbSet<TestQuestion> Questions { get; set; }
+        public DbSet<UsersTest> UsersTests { get; set; }
+        
     }
 }
+
+

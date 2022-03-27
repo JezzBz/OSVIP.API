@@ -70,7 +70,7 @@ namespace Osvip.Api.Controllers
 
             IEnumerable<Claim> Claims = AuthOptions.ReadJwtAccessToken(Token);
 
-            User? user = userRepository.GetUserByEmailAsync(
+            User? user = userRepository.GetUserByEmail(
     email: Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value);
 
             if (user != null)

@@ -85,23 +85,37 @@ namespace Osvip.Api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Course")
+                        .HasColumnType("integer");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("integer");
-
-                    b.Property<int>("DirectionId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Question")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("DirectionId");
-
                     b.ToTable("Tests", "public");
+                });
+
+            modelBuilder.Entity("Osvip.Api.Models.TestQuestion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("TestId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("Questions", "public");
                 });
 
             modelBuilder.Entity("Osvip.Api.Models.TestResponse", b =>
@@ -114,15 +128,15 @@ namespace Osvip.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("TestId")
-                        .HasColumnType("integer");
+                    b.Property<Guid?>("TestQuestionId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Weigth")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TestId");
+                    b.HasIndex("TestQuestionId");
 
                     b.ToTable("TestResponses", "public");
                 });
@@ -208,6 +222,9 @@ namespace Osvip.Api.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
+                    b.Property<int?>("Result")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
@@ -218,6 +235,33 @@ namespace Osvip.Api.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users", "public");
+                });
+
+            modelBuilder.Entity("Osvip.Api.Models.UsersTest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("TestId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("TestStartTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UsersTests", "public");
                 });
 
             modelBuilder.Entity("Osvip.Api.Models.UserToken", b =>
@@ -256,22 +300,21 @@ namespace Osvip.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Osvip.Api.Models.Direction", "Direction")
-                        .WithMany()
-                        .HasForeignKey("DirectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Department");
+                });
 
-                    b.Navigation("Direction");
+            modelBuilder.Entity("Osvip.Api.Models.TestQuestion", b =>
+                {
+                    b.HasOne("Osvip.Api.Models.Test", null)
+                        .WithMany("Question")
+                        .HasForeignKey("TestId");
                 });
 
             modelBuilder.Entity("Osvip.Api.Models.TestResponse", b =>
                 {
-                    b.HasOne("Osvip.Api.Models.Test", null)
-                        .WithMany("testResponses")
-                        .HasForeignKey("TestId");
+                    b.HasOne("Osvip.Api.Models.TestQuestion", null)
+                        .WithMany("Responses")
+                        .HasForeignKey("TestQuestionId");
                 });
 
             modelBuilder.Entity("Osvip.Api.Models.Transfer", b =>
@@ -301,6 +344,25 @@ namespace Osvip.Api.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Osvip.Api.Models.UsersTest", b =>
+                {
+                    b.HasOne("Osvip.Api.Models.Test", "Test")
+                        .WithMany()
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Osvip.Api.Models.User", "User")
+                        .WithOne("Test")
+                        .HasForeignKey("Osvip.Api.Models.UsersTest", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Test");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Osvip.Api.Models.UserToken", b =>
                 {
                     b.HasOne("Osvip.Api.Models.User", "user")
@@ -314,11 +376,18 @@ namespace Osvip.Api.Migrations
 
             modelBuilder.Entity("Osvip.Api.Models.Test", b =>
                 {
-                    b.Navigation("testResponses");
+                    b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("Osvip.Api.Models.TestQuestion", b =>
+                {
+                    b.Navigation("Responses");
                 });
 
             modelBuilder.Entity("Osvip.Api.Models.User", b =>
                 {
+                    b.Navigation("Test");
+
                     b.Navigation("Token")
                         .IsRequired();
                 });

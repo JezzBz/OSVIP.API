@@ -44,7 +44,8 @@ builder.Services.AddAuthentication(options =>
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = tokenValidationParameters;
-            });
+            })
+            ;
 
 
 

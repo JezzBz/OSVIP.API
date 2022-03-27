@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.IdentityModel.Tokens;
+using Osvip.Api.Auth.Repositories;
 using Osvip.Api.Models;
 
 namespace Osvip.Api.Data
@@ -73,6 +74,15 @@ namespace Osvip.Api.Data
             var jsonToken = handler.ReadToken(Token);
             var tokenS = jsonToken as JwtSecurityToken;
             return tokenS.Claims;
+        }
+        public static string GetUserEmailByToken(HttpContext httpContext)
+        {
+            string Token = httpContext.Request.Headers.Authorization.ToString().Split(" ")[1];
+
+            IEnumerable<Claim> Claims = AuthOptions.ReadJwtAccessToken(Token);
+           
+           
+            return Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value;
         }
     }
 }

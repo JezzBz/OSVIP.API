@@ -13,6 +13,8 @@ namespace Osvip.Api
 
         public Roles Role { get; set; }
 
+        public int? Result { get; set; }
+        public UsersTest Test { get; set; }
         public string ImgPath { get; set; }
     }
 }

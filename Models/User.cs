@@ -44,15 +44,17 @@ namespace Osvip.Api.Models
 
         [Display(Name ="Путь к картинке")]
         public string ImgPath { get; set; } = "/Source/Images/baseImages/Guest.jpeg";
-        
+
+        public int? Result { get; set; }
         public UserToken Token { get; set; } = new UserToken();
-
-
+        public UsersTest? Test { get; set; }
+        
+            
     }
     public enum Roles
     {
         Admin,
         Student,
-        Teacher
+     
     }
 }

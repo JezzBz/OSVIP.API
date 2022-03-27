@@ -87,7 +87,8 @@ namespace Osvip.Api.Controllers
                                 Fcs = newUser.Fcs,
                                 Id = newUser.UserId,
                                 email = newUser.Email,
-                                Img = user.ImgPath
+                                Img = user.ImgPath,
+                                
                             }
                         });
                     }
@@ -150,12 +151,9 @@ namespace Osvip.Api.Controllers
                 {
                     await image.CopyToAsync(fileStream);
                 }
-            string Token = HttpContext.Request.Headers.Authorization.ToString().Split(" ")[1];
+            var email = AuthOptions.GetUserEmailByToken(HttpContext);
 
-            IEnumerable<Claim> Claims = AuthOptions.ReadJwtAccessToken(Token);
-
-            User? user = userRepository.GetUserByEmailAsync(
-                email: Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value);
+            User? user = userRepository.GetUserByEmail(email);
             if (user==null)
             {
                 return BadRequest();
@@ -181,9 +179,10 @@ namespace Osvip.Api.Controllers
                     IUserResult userInfo = user;
                     return Ok(new
                     {
-                        access_token=access_token,
-                        userInfo
-                    });
+                        access_token = access_token,
+                        userInfo,
+                        
+                    }); ;
                 }
                 
             }
@@ -195,26 +194,23 @@ namespace Osvip.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> UserInfo()
         {
-
-            string Token =HttpContext.Request.Headers.Authorization.ToString().Split(" ")[1];
-
-            IEnumerable<Claim> Claims = AuthOptions.ReadJwtAccessToken(Token);
-
-            User? user = userRepository.GetUserByEmailAsync(
-                email: Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value);
-
+            
+            var email=AuthOptions.GetUserEmailByToken(HttpContext);
+            User? user =  userRepository.GetUserByEmail(email);
             if (user!=null)
             {
                 IUserResult userInfo = user;
                 return Ok(new
                 {
-                    
+                    isNowTesting = user.Test != null,
                     userInfo
                 }); 
             }
             return BadRequest();
             
         }
+
+       
 
         
         private string GenerateJwtAccessToken(User user)
@@ -229,10 +225,9 @@ namespace Osvip.Api.Controllers
                
                         );
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-            userRepository.AddAccessToken(user,encodedJwt);
+            userRepository.AddAccessToken(user, encodedJwt);
             return encodedJwt;
-        }
-        
+        }  
        
         private User CreateUser(RegisterModel model)
         {

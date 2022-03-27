@@ -1,5 +1,6 @@
 ﻿
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Osvip.Api.Data;
 using Osvip.Api.Models;
 using Osvip.Api.ServerModels;
@@ -48,7 +49,7 @@ namespace Osvip.Api.Auth.Repositories
         public User? SignIn(LoginModel LoginModel)
         {
 
-            var user = Context.Users.FirstOrDefault(x => x.Email == LoginModel.Email);
+            var user = Context.Users.AsNoTracking().FirstOrDefault(x => x.Email == LoginModel.Email);
             if (user!=null)
             {
                 var sald = Convert.FromBase64String(user.SecuriryStamp);
@@ -61,7 +62,7 @@ namespace Osvip.Api.Auth.Repositories
             
             return null;
         }
-        public  User GetUserByEmailAsync(string email) =>  Context.Users.First(x=>x.Email==email);
+        public  User GetUserByEmail(string email) =>  Context.Users.Include(x=>x.Test).FirstOrDefault(x=>x.Email==email);
         public async Task ChangeImage(User user,string imgName,string envPath)
         {
             if (user.ImgPath!="Source/Images/baseImages/Guest.jpeg")
@@ -90,6 +91,10 @@ namespace Osvip.Api.Auth.Repositories
            
            
                 User? user = Context.Users.FirstOrDefault(x => x.UserId == userId);
+                  if (user==null)
+                  {
+                        return null;
+                  }
                 if (user.EmailConfirmed)
                 {
                     return null;

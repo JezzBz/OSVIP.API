@@ -14,68 +14,52 @@ using Osvip.Api.Services.Auth.Repositories;
 namespace Osvip.Api.Controllers
 {
     [Route("api/admin")]
-    [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
+    [Authorize(AuthenticationSchemes = "Bearer",Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly AdminRepository repository;
-        public AdminController(ApplicationContext context)
+        private readonly ApplicationContext context;
+        public AdminController(ApplicationContext _context)
         {
-            repository = new AdminRepository(context);
+            context = _context;
         }
+        
+
 
         [HttpPost]
-        [Route("user-add")]
-        public async Task<IActionResult> AddUser(UserModel userModel)
+        [Route("add-department")]
+        public async Task<IActionResult> AddDepartment([FromBody] Department department)
         {
-            User? user = CreateUserFromModel(userModel);
-            if (user!=null)
-            {
-                await repository.AddUser(user);
-                return Ok();
-            }
-            return BadRequest();
            
-        }
-        [HttpDelete]
-        [Route("user-remove")]
-        public IActionResult RemoveUser(Guid userId)
-        {
-            if (repository.RemoveUser(userId))
-            {
+                await context.Departments.AddAsync(department);
+                await context.SaveChangesAsync(); 
                 return Ok();
-            }
-
-            return BadRequest();
-        }
-        [HttpPut]
-        [Route("user-update")]
-        public IActionResult UpdateUser(Guid userId, UserModel userModel)
-        {
-            User? user = CreateUserFromModel(userModel);
-            if (user==null)
-            {
-                return BadRequest();
-            }
-            repository.UpdateUser(userId, user);
-            return Ok();
+            
+            
             
         }
 
-
-        private static User? CreateUserFromModel(UserModel userModel)
+        [HttpPost]
+        [Route("add-direction")]
+        public async Task<IActionResult> AddDirection([FromBody]Direction direction)
         {
-            if (!AuthOptions.ValidateEmail(userModel.Email) || !AuthOptions.ValidetePassword(userModel.Password))
-            {
-                return null;
-            }
-            User user = new User();
-            user.Email = userModel.Email;
-            user.Fcs = userModel.Fcs;
-            byte[] salt = AuthOptions.GenerateSault();
-            user.Password = AuthOptions.HashPassword(password: userModel.Password, salt: salt);
-            user.Role = userModel.Role;
-            user.EmailConfirmed = true;
-            return user;
+            
+                await context.Directions.AddAsync(direction);
+                await context.SaveChangesAsync();
+                return Ok();
+            
+           
+        }
+        [HttpPost]
+        [Route("add-test")]
+        public async Task<IActionResult> AddTest([FromBody]Test test)
+        {
+
+                test.Department = context.Departments.First(x=>x.Id==test.Department.Id);
+                await context.Tests.AddAsync(test);
+                await context.SaveChangesAsync();
+                return Ok();
+            
+           
         }
     }
 

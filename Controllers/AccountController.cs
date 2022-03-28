@@ -210,8 +210,7 @@ namespace Osvip.Api.Controllers
             
         }
 
-       
-
+        
         
         private string GenerateJwtAccessToken(User user)
         {

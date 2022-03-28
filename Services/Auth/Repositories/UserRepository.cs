@@ -85,7 +85,6 @@ namespace Osvip.Api.Auth.Repositories
             await Context.SaveChangesAsync();
             return true;
         }
-
         public async Task<User?> ConfirmEmail(Guid userId, int emailToken)
         {
            

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "b4pfFn1vqyt91fekNIiG5/Pr4T5zh2O4aapD5ID5eH4=",
+  "Hash": "CbyjOKp1xg1DDJcKBIc7KajBcEBUp9qCQkBVwHE7ULc=",
   "Source": "Osvip.Api",
   "BasePath": "_content/Osvip.Api",
   "Mode": "Default",
@@ -731,12 +731,12 @@
       "OriginalItemSpec": "wwwroot/Source/Images/baseImages/.DS_Store"
     },
     {
-      "Identity": "/Users/bogdan/Documents/Osvip.Api/wwwroot/Source/Images/Department/Department.jpeg",
+      "Identity": "/Users/bogdan/Documents/Osvip.Api/wwwroot/Source/Images/Departments/Department.jpeg",
       "SourceId": "Osvip.Api",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/bogdan/Documents/Osvip.Api/wwwroot/",
       "BasePath": "_content/Osvip.Api",
-      "RelativePath": "Source/Images/Department/Department.jpeg",
+      "RelativePath": "Source/Images/Departments/Department.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -745,7 +745,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Source/Images/Department/Department.jpeg"
+      "OriginalItemSpec": "wwwroot/Source/Images/Departments/Department.jpeg"
     },
     {
       "Identity": "/Users/bogdan/Documents/Osvip.Api/wwwroot/Source/Images/UsersImages/.DS_Store",
@@ -848,6 +848,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Source/Images/UsersImages/b5030a96-3642-4a23-ab64-496e2f8905c8.gif"
+    },
+    {
+      "Identity": "/Users/bogdan/Documents/Osvip.Api/wwwroot/Source/Images/UsersImages/b590d820-2793-418f-a729-0622b869a214.gif",
+      "SourceId": "Osvip.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bogdan/Documents/Osvip.Api/wwwroot/",
+      "BasePath": "_content/Osvip.Api",
+      "RelativePath": "Source/Images/UsersImages/b590d820-2793-418f-a729-0622b869a214.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Source/Images/UsersImages/b590d820-2793-418f-a729-0622b869a214.gif"
     },
     {
       "Identity": "/Users/bogdan/Documents/Osvip.Api/wwwroot/Source/Images/UsersImages/f366a932-d491-4160-9c34-e7f107225814.gif",

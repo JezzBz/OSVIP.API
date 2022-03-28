@@ -20,7 +20,11 @@ namespace Osvip.Api.Controllers
         {
             repository = new TestRepository(context);
         }
-
+        /// <summary>
+        ///  Получения теста пользователем
+        /// </summary>
+        /// <param name="request">модель данных о тесте</param>
+        /// <returns>тест и время начала</returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("test")]
@@ -36,6 +40,11 @@ namespace Osvip.Api.Controllers
             return BadRequest();
             
         }
+
+        /// <summary>
+        /// Выдача присвоенного теста авторизованного пользователя 
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         [Route("user/test")]
@@ -49,6 +58,11 @@ namespace Osvip.Api.Controllers
             }
             return BadRequest();
         }
+        /// <summary>
+        /// Метод присвоения результатов теста по ответам
+        /// </summary>
+        /// <param name="responses">Экземпляры ответов</param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         [Route("answer")]
@@ -59,13 +73,7 @@ namespace Osvip.Api.Controllers
         }
 
 
-        [HttpGet]
-        [Route("test/new")]
-        [Authorize(AuthenticationSchemes ="Bearer",Roles ="Admin")]
-        public IActionResult Test()
-        {
-            return Ok();
-        }
+        
     }
 
 }

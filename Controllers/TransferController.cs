@@ -15,6 +15,9 @@ using Osvip.Api.Repositories;
 
 namespace Osvip.Api.Controllers
 {
+    /// <summary>
+    /// Контроллер заявлений на перевод
+    /// </summary>
     [Route("api/transfer")]
     public class TransferController : Controller
     {

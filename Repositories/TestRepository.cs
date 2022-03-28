@@ -14,7 +14,13 @@ namespace Osvip.Api.Repositories
         }
       
 
-       
+       /// <summary>
+       /// Присваивание теста пользователю
+       /// </summary>
+       /// <param name="userEmail"></param>
+       /// <param name="department"></param>
+       /// <param name="course"></param>
+       /// <returns></returns>
         public async  Task<User?> GetTest(string userEmail,int department,int course)
         {
             
@@ -30,9 +36,10 @@ namespace Osvip.Api.Repositories
                     return user;
                 }
 
-            var Test=  Context.Tests
+            var Test = Context.Tests
                 .Include(x => x.Question)
                 .ThenInclude(x => x.Responses)
+                .OrderBy(x=>Guid.NewGuid())
                 .FirstOrDefault(x => x.Course == course && x.Department.Id == department);
            
                 user.Test = new UsersTest
@@ -55,7 +62,12 @@ namespace Osvip.Api.Repositories
 
 
         }
-
+        /// <summary>
+        /// Вычислениие резкльтата тестирования
+        /// </summary>
+        /// <param name="userEmail"></param>
+        /// <param name="responses"></param>
+        /// <returns></returns>
         public async Task<int?> AnsewerTest(string userEmail, IEnumerable<Guid> responses)
         {
             User user = await Context.Users.FirstAsync(x=>x.Email==userEmail);
@@ -65,7 +77,11 @@ namespace Osvip.Api.Repositories
             await Context.SaveChangesAsync();
             return user.Result;
         }
-
+        /// <summary>
+        /// Получение присвоенного пользователю теста
+        /// </summary>
+        /// <param name="userEmail"></param>
+        /// <returns></returns>
         public User? GetUserTest(string userEmail)
         {  
            

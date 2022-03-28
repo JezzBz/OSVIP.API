@@ -12,6 +12,9 @@ using Osvip.Api.Repositories;
 
 namespace Osvip.Api.Controllers
 {
+    /// <summary>
+    /// Контроллер кафедр
+    /// </summary>
     [Route("api/department")]
     public class DepartmentscController : Controller
     {
@@ -20,7 +23,10 @@ namespace Osvip.Api.Controllers
         {
             repository = new DepartmentRepository(context);
         }
-
+        /// <summary>
+        /// Метод получения всех доступных кафедр
+        /// </summary>
+        /// <returns>массив кафедр</returns>
         [HttpGet]
         [Route("all")]
         public IActionResult Get()
@@ -28,17 +34,7 @@ namespace Osvip.Api.Controllers
             return Ok(repository.Get());
         }
 
-        [HttpPost]
-        [Authorize]
-        [Route("add")]
-        public async Task<IActionResult> Add(Department department)
-        {
-           if(await repository.AddAsync(department))
-            {
-                return Ok();
-            }
-            return BadRequest();   
-        }
+        
 
 
       

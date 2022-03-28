@@ -11,21 +11,10 @@ namespace Osvip.Api.Repositories
         {
             Context = context;
         }
-        public async Task<bool> AddAsync(Department department)
-        {
-            try
-            {
-                await Context.Departments.AddAsync(department);
-                await Context.SaveChangesAsync();
-                return true;
-            }
-            catch 
-            {
-                return false;
-            }
-            
-            
-        }
+       /// <summary>
+       /// Выборка всех кафедр из базы данных
+       /// </summary>
+       /// <returns></returns>
         public IEnumerable<Department> Get()
         {
             return Context.Departments.Select(x => x);

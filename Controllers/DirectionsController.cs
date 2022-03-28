@@ -20,6 +20,11 @@ namespace Osvip.Api.Controllers
             repository = new DirectionRepository(context);
         }
 
+        /// <summary>
+        /// Метод получения всех доступных направлений
+        /// </summary>
+        /// <returns>массив направлений</returns>
+
         [Route("all")]
         [HttpGet]
         public IEnumerable<Direction> Get()

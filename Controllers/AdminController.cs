@@ -13,6 +13,10 @@ using Osvip.Api.Services.Auth.Repositories;
 
 namespace Osvip.Api.Controllers
 {
+    /// <summary>
+    /// Контроллер доступный только пользователям
+    /// с ролью Admin
+    /// </summary>
     [Route("api/admin")]
     [Authorize(AuthenticationSchemes = "Bearer",Roles = "Admin")]
     public class AdminController : Controller
@@ -24,7 +28,11 @@ namespace Osvip.Api.Controllers
         }
         
 
-
+        /// <summary>
+        /// Метод добавления кафедры в приложение
+        /// </summary>
+        /// <param name="department">кафедра</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("add-department")]
         public async Task<IActionResult> AddDepartment([FromBody] Department department)
@@ -37,7 +45,11 @@ namespace Osvip.Api.Controllers
             
             
         }
-
+        /// <summary>
+        /// Метод добавления направления в приложение
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("add-direction")]
         public async Task<IActionResult> AddDirection([FromBody]Direction direction)
@@ -49,6 +61,11 @@ namespace Osvip.Api.Controllers
             
            
         }
+        /// <summary>
+        /// Метод добавления тестов в приложение 
+        /// </summary>
+        /// <param name="test"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("add-test")]
         public async Task<IActionResult> AddTest([FromBody]Test test)

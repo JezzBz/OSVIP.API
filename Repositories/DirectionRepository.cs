@@ -11,20 +11,10 @@ namespace Osvip.Api.Repositories
         {
             Context = context;
         }
-        public async Task<bool> AddAsync(Direction direction)
-        {
-            try
-            {
-                await Context.Directions.AddAsync(direction);
-                await Context.SaveChangesAsync();
-                return true;
-            }
-            catch 
-            {
-                return false;
-            }
-            
-        }
+      /// <summary>
+      /// Выборка всех направлений из базы данных
+      /// </summary>
+      /// <returns></returns>
         public  IEnumerable<Direction> Get()
         {
             IEnumerable<Direction> directions = Context.Directions.Select(x=>x);

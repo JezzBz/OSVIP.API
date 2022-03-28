@@ -14,12 +14,18 @@ namespace Osvip.Api.Data
     {
         public const string ISSUER = "OsvipApi"; // издатель токена
         public const string AUDIENCE = "OSVIPClIENT"; // потребитель токена
-        private const string KEY = "7pHE}Se?ZbqkVQVJ#B8g2e~N6Y8k@4UO";   // ключ для шифрации
+        private const string KEY = "7pHE}Se?ZbqkVQVJ#B8g2e~N6Y8k@4UO";   // ключ шифрования
         public const int LIFETIME = 1; // время жизни токена - 1 день
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
         }
+        /// <summary>
+        /// Хеширование пароля
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="salt"></param>
+        /// <returns></returns>
         public static string HashPassword(string password, byte[] salt)
         {
 
@@ -31,6 +37,10 @@ namespace Osvip.Api.Data
                 numBytesRequested: 256 / 8));
             return hashed;
         }
+        /// <summary>
+        /// Генерация соли для хеша
+        /// </summary>
+        /// <returns></returns>
         public static byte[] GenerateSault()
         {
             byte[] salt = new byte[128 / 8];
@@ -38,6 +48,11 @@ namespace Osvip.Api.Data
             random.NextBytes(salt);
             return salt;
         }
+        /// <summary>
+        /// Получение клаймов пользователя
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static ClaimsIdentity GetIdentity(User user)
         {
 
@@ -54,7 +69,17 @@ namespace Osvip.Api.Data
                 return claimsIdentity;
          
         }
+        /// <summary>
+        /// Проверка пароля регулярным выражением
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool ValidetePassword(string password) => Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{6,32}$");
+        /// <summary>
+        /// Проверка почты
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static bool ValidateEmail(string email)
         {
             try
@@ -68,6 +93,11 @@ namespace Osvip.Api.Data
             }
 
         }
+        /// <summary>
+        /// Чтение клаймов из токена
+        /// </summary>
+        /// <param name="Token"></param>
+        /// <returns></returns>
         public static IEnumerable<Claim> ReadJwtAccessToken(string Token)
         {
             var handler = new JwtSecurityTokenHandler();
@@ -75,6 +105,11 @@ namespace Osvip.Api.Data
             var tokenS = jsonToken as JwtSecurityToken;
             return tokenS.Claims;
         }
+        /// <summary>
+        /// Получение почты из токена
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public static string GetUserEmailByToken(HttpContext httpContext)
         {
             string Token = httpContext.Request.Headers.Authorization.ToString().Split(" ")[1];
